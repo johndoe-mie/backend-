@@ -6,7 +6,7 @@ import pickle
 import os
 
 # Load data
-df = pd.read_excel(r"C:\Users\karth\OneDrive\Desktop\gitweather\backend\chennai-monthly-rains.xlsx")
+df = pd.read_excel(r"chennai-monthly-rains.xlsx")
 
 # Remove rows with all zeros or missing values
 df.dropna(inplace=True)
