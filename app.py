@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load dataset once
-df = pd.read_excel(r"C:\Users\karth\OneDrive\Desktop\gitweather\backend\chennai-monthly-rains.xlsx")
+df = pd.read_excel(r"chennai-monthly-rains.xlsx")
 df.set_index("Year", inplace=True)
 
 @app.route("/predict", methods=["GET"])
