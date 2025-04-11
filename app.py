@@ -9,6 +9,10 @@ from predict import predict_rainfall_for_year
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def home():
+    return jsonify({"message": "ML Weather API is live!"})
+
 # Load dataset once
 df = pd.read_excel(r"chennai-monthly-rains.xlsx")
 df.set_index("Year", inplace=True)
