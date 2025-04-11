@@ -1,5 +1,3 @@
-# backend/app.py
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pandas as pd
@@ -7,14 +5,13 @@ import os
 from predict import predict_rainfall_for_year
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*")  # ← allows frontend on another domain to access this API
 
 @app.route("/")
 def home():
     return jsonify({"message": "ML Weather API is live!"})
 
-# Load dataset once
-df = pd.read_excel(r"chennai-monthly-rains.xlsx")
+df = pd.read_excel("chennai-monthly-rains.xlsx")
 df.set_index("Year", inplace=True)
 
 @app.route("/predict", methods=["GET"])
@@ -34,11 +31,6 @@ def predict():
         "past_data": past_data
     })
 
-
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(debug=True, host="0.0.0.0", port=port)
-
-
-   
